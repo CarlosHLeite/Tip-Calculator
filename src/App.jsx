@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import "./App.css";
+import { HomeLayout, TipCalculator, About, Landing } from "./pages";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/tip-calculator",
+        element: <TipCalculator />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1>Hello</h1>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
